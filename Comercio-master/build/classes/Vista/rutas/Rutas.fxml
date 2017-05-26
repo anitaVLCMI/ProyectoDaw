@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.rutas.RutasController">
+   <children>
+      <TextField fx:id="id" layoutX="239.0" layoutY="54.0" />
+      <Label fx:id="idRuta" layoutX="155.0" layoutY="58.0" text="IdRuta" />
+      <Label layoutX="154.0" layoutY="105.0" text="Kilometros" />
+      <Label layoutX="154.0" layoutY="149.0" text="Trabajador" />
+      <Label layoutX="154.0" layoutY="192.0" text="Minutos" />
+      <TextField fx:id="kilometros" layoutX="239.0" layoutY="101.0" />
+      <TextField fx:id="trabajador" layoutX="239.0" layoutY="145.0" />
+      <TextField fx:id="minutos" layoutX="239.0" layoutY="188.0" />
+      <TextField fx:id="gastos" layoutX="239.0" layoutY="234.0" />
+      <Label layoutX="154.0" layoutY="238.0" text="Gastos" />
+      <Button fx:id="insertar" layoutX="466.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#clicarinsertarRuta" text="Insertar Ruta" />
+   </children>
+</AnchorPane>

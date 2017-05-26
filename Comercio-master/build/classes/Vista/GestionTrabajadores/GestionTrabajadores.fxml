@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.GestionTrabajadores.GestionTrabajadoresController">
+   <children>
+      <TabPane prefHeight="540.0" prefWidth="593.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="AÑADIR TRABAJADOR">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="308.0">
+                     <children>
+                        <Label layoutX="79.0" layoutY="313.0" text="Contraseña" />
+                        <Label layoutX="80.0" layoutY="83.0" text="Id Trabajador" />
+                        <Label layoutX="79.0" layoutY="128.0" text="Nombre" />
+                        <Label layoutX="79.0" layoutY="173.0" text="Puesto" />
+                        <Label layoutX="79.0" layoutY="216.0" text="Dni / NIE" />
+                        <Label layoutX="79.0" layoutY="263.0" text="Salario bruto anual" />
+                        <TextField layoutX="239.0" layoutY="79.0" />
+                        <TextField layoutX="239.0" layoutY="124.0" />
+                        <TextField layoutX="239.0" layoutY="169.0" />
+                        <TextField layoutX="239.0" layoutY="212.0" />
+                        <TextField layoutX="239.0" layoutY="259.0" />
+                        <TextField layoutX="239.0" layoutY="309.0" />
+                        <Label layoutX="201.0" layoutY="22.0" prefHeight="31.0" prefWidth="225.0" text="AÑADIR TRABAJADORES">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="añadirTrabajor" layoutX="379.0" layoutY="411.0" mnemonicParsing="false" onAction="#añadirTrabajador" text="AÑADIR TRABAJADOR" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="MODIFICAR TRABAJADOR">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="308.0">
+                     <children>
+                        <Label layoutX="79.0" layoutY="313.0" text="Contraseña" />
+                        <Label layoutX="80.0" layoutY="83.0" text="Id Trabajador" />
+                        <Label layoutX="79.0" layoutY="128.0" text="Nombre" />
+                        <Label layoutX="79.0" layoutY="173.0" text="Puesto" />
+                        <Label layoutX="79.0" layoutY="216.0" text="Dni / NIE" />
+                        <Label layoutX="79.0" layoutY="263.0" text="Salario bruto anual" />
+                        <TextField layoutX="239.0" layoutY="79.0" />
+                        <TextField layoutX="239.0" layoutY="124.0" />
+                        <TextField layoutX="239.0" layoutY="169.0" />
+                        <TextField layoutX="239.0" layoutY="212.0" />
+                        <TextField layoutX="239.0" layoutY="259.0" />
+                        <TextField layoutX="239.0" layoutY="309.0" />
+                        <Label layoutX="201.0" layoutY="22.0" prefHeight="31.0" prefWidth="225.0" text="AÑADIR TRABAJADORES">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="añadirTrabajor1" layoutX="379.0" layoutY="411.0" mnemonicParsing="false" onAction="#añadirTrabajador" text="AÑADIR TRABAJADOR" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="INFORMACION DE TRABAJADOR">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableView" layoutX="45.0" layoutY="79.0" prefHeight="395.0" prefWidth="507.0">
+                          <columns>
+                            <TableColumn fx:id="idColum" prefWidth="75.0" text="Id trabajador" />
+                            <TableColumn fx:id="nombreColum" prefWidth="75.0" text="Nombre" />
+                              <TableColumn fx:id="puestoColum" prefWidth="89.0" text="Puesto" />
+                              <TableColumn fx:id="dniColum" prefWidth="86.0" text="DNI" />
+                              <TableColumn fx:id="salarioColum" prefWidth="74.0" text="Salario" />
+                              <TableColumn fx:id="ContraseñaColum" prefWidth="107.0" text="Contraseña" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="153.0" layoutY="24.0" prefHeight="31.0" prefWidth="292.0" text="INFORMACION DE  TRABAJADORES">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

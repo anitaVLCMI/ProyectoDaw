@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import jfxtras.labs.icalendaragenda.internal.scene.control.skin.agenda.base24hour.*?>
+<?import jfxtras.labs.scene.control.*?>
+<?import jfxtras.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="580.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.GestionIncidencias.IncidenciasController">
+    <stylesheets>
+       
+    </stylesheets>
+   <children>
+      <Label fx:id="label_Incidencias" layoutX="181.0" layoutY="14.0" text="Incidencias">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TabPane fx:id="tabPaneInci" layoutY="63.0" prefHeight="384.0" prefWidth="580.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tab_inci" text="Incidencias">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="508.0">
+                     <children>
+                        <TableView fx:id="tableView" prefHeight="292.0" prefWidth="580.0">
+                           <columns>
+                              <TableColumn fx:id="idIncidencias" prefWidth="87.0" text="ID" />
+                              <TableColumn fx:id="idTienda" prefWidth="70.0" text="idTienda" />
+                              <TableColumn fx:id="idTrabajador" prefWidth="94.0" text="ID Trabajador" />
+                              <TableColumn fx:id="tab_fecha" prefWidth="198.0" text="Fecha" />
+                              <TableColumn fx:id="descripcion" prefWidth="137.0" text="Descripcion" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="bt_ModifiInci" layoutX="82.0" layoutY="303.0" mnemonicParsing="false" onAction="#cambiar" text="Cambiar Incidencia" />
+                        <Button fx:id="bt_eliminarInci" layoutX="252.0" layoutY="303.0" mnemonicParsing="false" onAction="#borrarInci" text="Eliminar Incidencia" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tab_CambiosInci" text="Nueva Incidencias">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="508.0">
+                     <children>
+                        <Label layoutX="29.0" layoutY="31.0" prefHeight="21.0" prefWidth="97.0" text="ID Incidencia">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textF_idIncidencia" layoutX="160.0" layoutY="29.0" prefHeight="25.0" prefWidth="72.0" />
+                        <TextField fx:id="textf_idTrabajador" layoutX="160.0" layoutY="70.0" prefHeight="25.0" prefWidth="72.0" />
+                        <TextField fx:id="textF_idTienda" layoutX="161.0" layoutY="146.0" prefHeight="25.0" prefWidth="70.0" />
+                        <Label layoutX="28.0" layoutY="72.0" text="ID Trabajador:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="148.0" text="ID Tienda">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="31.0" layoutY="110.0" text="Fecha:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="textArea_descripcion" layoutX="50.0" layoutY="217.0" prefHeight="87.0" prefWidth="374.0" />
+                        <Label layoutX="40.0" layoutY="188.0" text="Descripcion:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bt_guardar" layoutX="196.0" layoutY="316.0" mnemonicParsing="false" onAction="#guardar" text="guardar">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
+                        <Label layoutX="362.0" layoutY="74.0" text="Hora:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <LocalTimeTextField fx:id="txfield_hora" layoutX="347.0" layoutY="108.0" />
+                        <LocalDateTextField fx:id="txField_fecha" layoutX="160.0" layoutY="108.0" />
+                        <Button fx:id="bt_guardarCam" layoutX="279.0" layoutY="316.0" mnemonicParsing="false" onAction="#guuardarCambios" text="Guardar Cambios">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

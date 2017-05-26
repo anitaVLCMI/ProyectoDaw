@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.login.FXMLDocumentController">
+   <children>
+      <Label layoutX="120.0" layoutY="102.0" text="Usuario" />
+      <Label layoutX="120.0" layoutY="153.0" text="Contraseña" />
+      <TextField fx:id="usuario" layoutX="218.0" layoutY="98.0" />
+      <TextField fx:id="contra" layoutX="218.0" layoutY="149.0" />
+      <Button fx:id="login" layoutX="218.0" layoutY="244.0" mnemonicParsing="false" onMouseClicked="#clicarLogin" text="Login" />
+      <Label fx:id="conexion" layoutX="406.0" layoutY="349.0" />
+   </children>
+</AnchorPane>

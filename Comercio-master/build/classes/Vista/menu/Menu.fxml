@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.menu.FXMLVistaPrincipalController">
+   <children>
+      <Button fx:id="rutas" layoutX="37.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#clicarRutas" text="Rutas" />
+      <Button fx:id="trabajadores" layoutX="93.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#clicarTrabajadores" text="SUPER TRABAJADORES" />
+      <Button fx:id="horario" layoutX="257.0" layoutY="148.0" mnemonicParsing="false" onAction="#clicarHorarios" text="Horarios" />
+      <Button fx:id="incidencias" layoutX="341.0" layoutY="148.0" mnemonicParsing="false" onAction="#clicarIncidencias" text="Incidencias" />
+   </children>
+</AnchorPane>
