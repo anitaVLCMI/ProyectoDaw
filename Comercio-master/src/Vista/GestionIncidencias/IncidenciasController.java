@@ -25,9 +25,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -103,6 +105,10 @@ public class IncidenciasController implements Initializable {
     @FXML
     private Button bt_guardarCam;
 
+    int idIncidencias1;
+    int idTrabajador1;
+    int idtienda;
+
     /**
      * Initializes the controller class.
      */
@@ -127,7 +133,7 @@ public class IncidenciasController implements Initializable {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
             txField_fecha.setDateTimeFormatter(format);
-            bt_guardarCam.setDisable(true);
+            bt_guardarCam.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(IncidenciasController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -144,6 +150,11 @@ public class IncidenciasController implements Initializable {
 
             bdd.borrarIncidencia(incidencia.getIdIncidencias());
 
+        } else {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText("Id Incidencia no encontrada");
+            a.show();
         }
 
     }
@@ -155,17 +166,21 @@ public class IncidenciasController implements Initializable {
         selectionModel.select(tab_CambiosInci);
 
         incidencia = tableView.getSelectionModel().getSelectedItem();
-        String id=String.valueOf(incidencia.getIdIncidencias());
+
+        String id = String.valueOf(incidencia.getIdIncidencias());
+        if (id == null) {
+            bt_guardarCam.setVisible(false);
+        }
         textF_idIncidencia.setText(id);
-        bt_guardar.setDisable(true);
-        bt_guardarCam.setDisable(false);
+        bt_guardar.setVisible(false);
+        bt_guardarCam.setVisible(true);
     }
 
     @FXML
     private void guardar(ActionEvent event) throws SQLException {
-        int idIncidencias = Integer.valueOf(textF_idIncidencia.getText());
-        int idTrabajador = Integer.valueOf(textf_idTrabajador.getText());
-        int idtienda = Integer.valueOf(textF_idTienda.getText());
+        idIncidencias1 = Integer.valueOf(textF_idIncidencia.getText());
+        idTrabajador1 = Integer.valueOf(textf_idTrabajador.getText());
+        idtienda = Integer.valueOf(textF_idTienda.getText());
 
         String fecha = txField_fecha.getText() + " " + txfield_hora.getLocalTime();
 
@@ -173,25 +188,57 @@ public class IncidenciasController implements Initializable {
 
 //        String fecha2=formato.format(fecha);
         String descripcion = textArea_descripcion.getText();
+        if (incidencia.consultarIDincidencia(idIncidencias1) == true) {
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText("Id incidencia ya insertada");
+            a.show();
 
-        bdd.insertarIncidencia(idIncidencias, idTrabajador, idtienda, fecha, descripcion);
+        } else {
+            bdd.insertarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion);
+        }
+
     }
 
     @FXML
     private void guuardarCambios(ActionEvent event) throws SQLException {
-        
-        int idIncidencias = Integer.valueOf(textF_idIncidencia.getText());
-        int idTrabajador = Integer.valueOf(textf_idTrabajador.getText());
-        int idtienda = Integer.valueOf(textF_idTienda.getText());
+
+        idIncidencias1 = Integer.valueOf(textF_idIncidencia.getText());
+        idTrabajador1 = Integer.valueOf(textf_idTrabajador.getText());
+        idtienda = Integer.valueOf(textF_idTienda.getText());
 
         String fecha = txField_fecha.getText() + " " + txfield_hora.getLocalTime();
 
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
 
-//        String fecha2=formato.format(fecha);
         String descripcion = textArea_descripcion.getText();
 
-        bdd.cambiarIncidencia(idIncidencias, idTrabajador, idtienda, fecha, descripcion);
+        if (incidencia.consultarIDincidencia(idIncidencias1) == true) {
+
+            bdd.cambiarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion);
+        } else {
+
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText("Id Incidencia no encontrada");
+            a.show();
+        }
+    }
+
+    @FXML
+    private void CambiosTab(Event event) {
+
+        if (tab_CambiosInci.isSelected()) {
+            
+
+            bt_guardar.setVisible(true);
+            bt_guardarCam.setVisible(false);
+            textF_idIncidencia.setText("");
+        }
+       
+        bt_guardar.setVisible(true);
+        bt_guardarCam.setVisible(false);
+
     }
 
 }

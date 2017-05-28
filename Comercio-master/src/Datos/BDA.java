@@ -134,7 +134,7 @@ public class BDA {
         ps.setString(1, descripcion);
         ps.setString(4, fecha);
 
-        int numfilas = ps.executeUpdate();
+         ps.executeUpdate();
 
     }
 

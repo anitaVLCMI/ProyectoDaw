@@ -27,7 +27,6 @@ public class Incidencias {
     private final StringProperty descripcion = new SimpleStringProperty();
     private final IntegerProperty idTienda = new SimpleIntegerProperty();
     private final StringProperty fecha = new SimpleStringProperty();
-    
 
     public String getFecha() {
         return fecha.get();
@@ -101,12 +100,13 @@ public class Incidencias {
         boolean existe = false;
         bdd = new BDA();
         for (Incidencias velementos : bdd.listarIncidencias()) {
+
             if (incidencia == velementos.getIdIncidencias()) {
                 existe = true;
-            } else {
-                existe = false;
+
             }
         }
+        System.out.println(existe);
         return existe;
     }
 }
