@@ -8,7 +8,9 @@ package Vista.horario;
 import Datos.BDA;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import jfxtras.scene.control.CalendarPicker;
 
 /**
  * FXML Controller class
@@ -17,11 +19,16 @@ import javafx.fxml.Initializable;
  */
 public class HorarioController implements Initializable {
 
+    @FXML
+    private CalendarPicker calendario;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        calendario
         // TODO
     }    
 

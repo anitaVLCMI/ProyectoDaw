@@ -96,17 +96,5 @@ public class Incidencias {
         return idIncidencias;
     }
 
-    public boolean consultarIDincidencia(int incidencia) throws SQLException {
-        boolean existe = false;
-        bdd = new BDA();
-        for (Incidencias velementos : bdd.listarIncidencias()) {
-
-            if (incidencia == velementos.getIdIncidencias()) {
-                existe = true;
-
-            }
-        }
-        System.out.println(existe);
-        return existe;
-    }
+    
 }

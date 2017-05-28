@@ -108,6 +108,7 @@ public class IncidenciasController implements Initializable {
     int idIncidencias1;
     int idTrabajador1;
     int idtienda;
+    Alert a;
 
     /**
      * Initializes the controller class.
@@ -146,12 +147,17 @@ public class IncidenciasController implements Initializable {
         ///Conseguir values de tableView
         incidencia = tableView.getSelectionModel().getSelectedItem();
 
-        if (incidencia.consultarIDincidencia(incidencia.getIdIncidencias()) == true) {
+        if (bdd.consultarIDincidencia(incidencia.getIdIncidencias()) == true) {
 
-            bdd.borrarIncidencia(incidencia.getIdIncidencias());
+            if (bdd.borrarIncidencia(incidencia.getIdIncidencias()) != 0) {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Informacion");
+                a.setHeaderText("Incidencia borrada");
+                a.show();
+            }
 
         } else {
-            Alert a = new Alert(Alert.AlertType.ERROR);
+            a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Error");
             a.setHeaderText("Id Incidencia no encontrada");
             a.show();
@@ -177,7 +183,8 @@ public class IncidenciasController implements Initializable {
     }
 
     @FXML
-    private void guardar(ActionEvent event) throws SQLException {
+    private void guardar(ActionEvent event) {
+
         idIncidencias1 = Integer.valueOf(textF_idIncidencia.getText());
         idTrabajador1 = Integer.valueOf(textf_idTrabajador.getText());
         idtienda = Integer.valueOf(textF_idTienda.getText());
@@ -186,16 +193,21 @@ public class IncidenciasController implements Initializable {
 
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
 
-//        String fecha2=formato.format(fecha);
         String descripcion = textArea_descripcion.getText();
-        if (incidencia.consultarIDincidencia(idIncidencias1) == true) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("Id incidencia ya insertada");
-            a.show();
 
-        } else {
-            bdd.insertarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion);
+        try {
+            if (bdd.insertarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion) != 0) {
+                a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Informacion");
+                a.setHeaderText("Incidencia Insertada");
+                a.show();
+
+            }
+        } catch (SQLException ex) {
+            a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText("Datos introducidos erroneos");
+            a.show();
         }
 
     }
@@ -213,14 +225,19 @@ public class IncidenciasController implements Initializable {
 
         String descripcion = textArea_descripcion.getText();
 
-        if (incidencia.consultarIDincidencia(idIncidencias1) == true) {
+        if (bdd.consultarIDincidencia(idIncidencias1) == true) {
 
-            bdd.cambiarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion);
+            if (bdd.cambiarIncidencia(idIncidencias1, idTrabajador1, idtienda, fecha, descripcion) != 0) {
+                a = new Alert(Alert.AlertType.INFORMATION);
+                a.setTitle("Informacion");
+                a.setHeaderText("Incidencia modificada");
+                a.show();
+            }
+
         } else {
-
-            Alert a = new Alert(Alert.AlertType.ERROR);
+            a = new Alert(Alert.AlertType.ERROR);
             a.setTitle("Error");
-            a.setHeaderText("Id Incidencia no encontrada");
+            a.setHeaderText("Id incidencia no encontrado");
             a.show();
         }
     }
@@ -229,13 +246,12 @@ public class IncidenciasController implements Initializable {
     private void CambiosTab(Event event) {
 
         if (tab_CambiosInci.isSelected()) {
-            
 
             bt_guardar.setVisible(true);
             bt_guardarCam.setVisible(false);
             textF_idIncidencia.setText("");
         }
-       
+
         bt_guardar.setVisible(true);
         bt_guardarCam.setVisible(false);
 

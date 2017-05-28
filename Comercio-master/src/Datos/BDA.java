@@ -103,8 +103,8 @@ public class BDA {
         return lista;
     }
 
-    public void insertarIncidencia(int idIncidencias, int idTrabajador, int idTienda, String fecha, String descripcion) throws SQLException {
-
+    public int insertarIncidencia(int idIncidencias, int idTrabajador, int idTienda, String fecha, String descripcion) throws SQLException {
+        int numFilas;
         String consulta = "INSERT INTO Incidencias(idIncidencias,idTrabajador,idtienda,fecha ,descripcion) values (?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(consulta);
         ps.setInt(1, idIncidencias);
@@ -112,30 +112,50 @@ public class BDA {
         ps.setInt(3, idTienda);
         ps.setString(4, fecha);
         ps.setString(5, descripcion);
-        ps.executeUpdate();
+        numFilas = ps.executeUpdate();
+        return numFilas;
 
     }
 
-    public void borrarIncidencia(int idIncidencia) throws SQLException {
+    public int borrarIncidencia(int idIncidencia) throws SQLException {
+        int numFilas;
         String consulta = " DELETE FROM Incidencias WHERE idIncidencias = ?";
         PreparedStatement ps = conn.prepareStatement(consulta);
         ps.setInt(1, idIncidencia);
 
-        ps.executeUpdate();
+      numFilas=  ps.executeUpdate();
+        return numFilas;
 
     }
 
-    public void cambiarIncidencia(int idIncidencias, int idTrabajador, int idTienda, String fecha, String descripcion) throws SQLException {
+    public int cambiarIncidencia(int idIncidencias, int idTrabajador, int idTienda, String fecha, String descripcion) throws SQLException {
+        int numFilas;
         String consulta = "UPDATE Incidencias SET descripcion=?,idTienda=?,idTrabajador=?,fecha=? WHERE idIncidencias =?";
         PreparedStatement ps = conn.prepareStatement(consulta);
         ps.setInt(5, idIncidencias);
         ps.setInt(3, idTrabajador);
-        ps.setInt(2,  idTienda);
+        ps.setInt(2, idTienda);
         ps.setString(1, descripcion);
         ps.setString(4, fecha);
 
-         ps.executeUpdate();
+       numFilas= ps.executeUpdate();
+        return numFilas;
 
+    }
+
+    public boolean consultarIDincidencia(int incidencia) throws SQLException {
+
+        boolean existe = false;
+
+        for (Incidencias velementos : listarIncidencias()) {
+
+            if (incidencia == velementos.getIdIncidencias()) {
+                existe = true;
+
+            }
+        }
+
+        return existe;
     }
 
 }
