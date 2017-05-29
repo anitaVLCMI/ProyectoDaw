@@ -9,13 +9,73 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="289.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.horario.HorarioController">
+<AnchorPane id="AnchorPane" prefHeight="403.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.horario.HorarioController">
    <children>
-      <Label layoutX="221.0" layoutY="38.0" text="Horario">
+      <Label layoutX="200.0" layoutY="23.0" text="Horario">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Magnifier />
+      <TabPane fx:id="tabPanel" layoutY="57.0" prefHeight="309.0" prefWidth="496.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tab_infor" text="Informacion Horarios">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="293.0" prefWidth="496.0">
+                     <children>
+                        <TableView fx:id="tableView" prefHeight="218.0" prefWidth="499.0">
+                           <columns>
+                              <TableColumn fx:id="table_idHorario" prefWidth="75.0" text="id" />
+                              <TableColumn fx:id="table_horaEntrada1" prefWidth="97.0" text="HoraEntrada" />
+                              <TableColumn fx:id="table_HoraSalida1" prefWidth="90.0" text="HoraSalida" />
+                              <TableColumn fx:id="table_fechaInicio1" prefWidth="102.0" text="FechaInicio" />
+                              <TableColumn fx:id="table_fechaSalida1" prefWidth="134.0" text="FechaSalida" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="bt_cambiar" layoutX="173.0" layoutY="241.0" mnemonicParsing="false" onAction="#cambiarHorario" text="Cambiar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tab_nuevoCambiar" onSelectionChanged="#cambiosTab" text="Nuevo/CambiarHorario">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="496.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="35.0" text="Codigo horario">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="text_idHorario" layoutX="155.0" layoutY="33.0" prefHeight="25.0" prefWidth="76.0" />
+                        <Label layoutX="27.0" layoutY="101.0" text="Fecha inicio:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="27.0" layoutY="141.0" text="Fecha fin:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bt_guardar" layoutX="139.0" layoutY="216.0" mnemonicParsing="false" onAction="#guardar" text="Guardar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bt_guardarCambios" layoutX="246.0" layoutY="216.0" mnemonicParsing="false" onAction="#guardarCambios" text="Guardar cambios">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <LocalDateTimeTextField fx:id="ejemplo" layoutX="139.0" layoutY="109.0" prefHeight="25.0" prefWidth="152.0" />
+                        <LocalDateTimeTextField fx:id="ejemplo2" layoutX="139.0" layoutY="139.0" prefHeight="25.0" prefWidth="153.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

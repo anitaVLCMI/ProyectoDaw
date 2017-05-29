@@ -9,13 +9,9 @@ import Datos.BDA;
 import Modelo.Incidencias;
 
 import java.net.URL;
-import java.sql.Date;
 
-import static java.sql.JDBCType.DATE;
 import java.sql.SQLException;
-import static java.sql.Types.DATE;
-import java.text.DateFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -43,11 +39,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import jfxtras.scene.control.CalendarTextField;
-import jfxtras.scene.control.CalendarTimeTextField;
+
 import jfxtras.scene.control.LocalDateTextField;
 import jfxtras.scene.control.LocalTimeTextField;
-import org.apache.derby.client.am.DateTime;
+
 
 /**
  * FXML Controller class
@@ -101,6 +96,7 @@ public class IncidenciasController implements Initializable {
     private LocalDateTextField txField_fecha;
     @FXML
     private TableColumn<Incidencias, String> tab_fecha;
+
     Incidencias incidencia;
     @FXML
     private Button bt_guardarCam;

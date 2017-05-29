@@ -5,6 +5,7 @@
  */
 package Datos;
 
+import Modelo.Horario;
 import Modelo.Incidencias;
 import Modelo.Trabajador;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +125,7 @@ public class BDA {
         PreparedStatement ps = conn.prepareStatement(consulta);
         ps.setInt(1, idIncidencia);
 
-      numFilas=  ps.executeUpdate();
+        numFilas = ps.executeUpdate();
         return numFilas;
 
     }
@@ -138,7 +140,7 @@ public class BDA {
         ps.setString(1, descripcion);
         ps.setString(4, fecha);
 
-       numFilas= ps.executeUpdate();
+        numFilas = ps.executeUpdate();
         return numFilas;
 
     }
@@ -156,6 +158,77 @@ public class BDA {
         }
 
         return existe;
+    }
+
+    public boolean consultarIDhorario(int idHorario) throws SQLException {
+
+        boolean existe = false;
+
+        for (Horario velementos : listarHorarios()) {
+
+            if (idHorario == velementos.getIdHorarios()) {
+                existe = true;
+
+            }
+        }
+
+        return existe;
+    }
+
+    public ArrayList<Horario> listarHorarios() throws SQLException {
+        conectar();
+        int id;
+        String horaEntrada;
+        String horaSalida;
+        String fechaInicio;
+        String fechasalida;
+
+        ArrayList<Horario> listaHorarios = new ArrayList<>();
+        String consulta = "SELECT * FROM horarios";
+        PreparedStatement ps = conn.prepareStatement(consulta, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            id = rs.getInt("idHorario");
+            horaEntrada = rs.getString("horaEntrada");
+            horaSalida = rs.getString("horaSalida");
+            fechaInicio = rs.getString("fechaInicio");
+            fechasalida = rs.getString("fechaFin");
+
+            Horario horarios = new Horario(id, horaEntrada, horaSalida, fechaInicio, fechasalida);
+            listaHorarios.add(horarios);
+        }
+        return listaHorarios;
+    }
+
+    public int insertarHorario(int idHorario, String horaEntrada, String horaSalida, String fechaInicio, String fechaFin) throws SQLException {
+        int numFilas;
+        String consulta = "INSERT INTO horarios(idHorario,horaEntrada,horaSalida,fechaInicio,fechaFin) values (?,?,?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(consulta);
+        ps.setInt(1, idHorario);
+        ps.setString(2, horaEntrada);
+        ps.setString(3, horaSalida);
+        ps.setString(4, fechaInicio);
+        ps.setString(5, fechaFin);
+        numFilas = ps.executeUpdate();
+        return numFilas;
+
+    }
+
+    public int cambiarHorario(int idHorario, String horaEntrada, String horaSalida, String fechaInicio, String fechaFin) throws SQLException {
+        int numFilas;
+        String consulta = "UPDATE horarios SET HoraEntrada=?,HoraSalida=?,fechaInicio=?,fechaFin=? WHERE idHorario = ?";
+        PreparedStatement ps = conn.prepareStatement(consulta);
+
+        ps.setString(1, horaEntrada);
+        ps.setString(2, horaSalida);
+        ps.setString(3, fechaInicio);
+        ps.setString(4, fechaFin);
+        ps.setInt(5, idHorario);
+
+        numFilas = ps.executeUpdate();
+        return numFilas;
+
     }
 
 }
