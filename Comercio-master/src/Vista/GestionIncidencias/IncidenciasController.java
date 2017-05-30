@@ -14,6 +14,7 @@ import java.sql.SQLException;
 
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,10 +40,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-
 import jfxtras.scene.control.LocalDateTextField;
 import jfxtras.scene.control.LocalTimeTextField;
-
 
 /**
  * FXML Controller class
@@ -105,17 +104,19 @@ public class IncidenciasController implements Initializable {
     int idTrabajador1;
     int idtienda;
     Alert a;
+    List<Incidencias> lista;
+    boolean entro;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        entro=true;
         try {
-
+            
             bdd = new BDA();
-            List<Incidencias> lista = bdd.listarIncidencias();
+            lista = bdd.listarIncidencias();
 
             listaIncidencias = FXCollections.observableArrayList(lista);
 
@@ -162,14 +163,15 @@ public class IncidenciasController implements Initializable {
     }
 
     @FXML
-    private void cambiar(ActionEvent event) {
+    private void cambiar(ActionEvent event) throws SQLException {
+
         tab_CambiosInci.getGraphic();
         SingleSelectionModel<Tab> selectionModel = tabPaneInci.getSelectionModel();
         selectionModel.select(tab_CambiosInci);
 
-        incidencia = tableView.getSelectionModel().getSelectedItem();
+        int id2 = tableView.getSelectionModel().getSelectedItem().getIdIncidencias();
 
-        String id = String.valueOf(incidencia.getIdIncidencias());
+        String id = String.valueOf(id2);
         if (id == null) {
             bt_guardarCam.setVisible(false);
         }
@@ -245,11 +247,33 @@ public class IncidenciasController implements Initializable {
 
             bt_guardar.setVisible(true);
             bt_guardarCam.setVisible(false);
-            textF_idIncidencia.setText("");
+            textF_idIncidencia.clear();
+            textArea_descripcion.clear();
+            textF_idTienda.clear();
+            textf_idTrabajador.clear();
+            txField_fecha.setText("");
+            txfield_hora.setLocalTime(null);
+            
         }
 
         bt_guardar.setVisible(true);
         bt_guardarCam.setVisible(false);
+
+    }
+
+    @FXML
+    private void clicarIncidencias(Event event) throws SQLException {
+        if(entro==true){
+            
+        
+        if(tab_inci.isSelected()){
+             listaIncidencias.clear();
+        lista = bdd.listarIncidencias();
+        listaIncidencias.addAll(lista);
+        }
+        }
+       
+       
 
     }
 

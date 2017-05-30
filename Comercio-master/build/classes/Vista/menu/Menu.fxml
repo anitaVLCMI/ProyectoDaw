@@ -13,5 +13,6 @@
       <Button fx:id="trabajadores" layoutX="93.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#clicarTrabajadores" text="SUPER TRABAJADORES" />
       <Button fx:id="horario" layoutX="257.0" layoutY="148.0" mnemonicParsing="false" onAction="#clicarHorarios" text="Horarios" />
       <Button fx:id="incidencias" layoutX="341.0" layoutY="148.0" mnemonicParsing="false" onAction="#clicarIncidencias" text="Incidencias" />
+      <Button fx:id="tiendas" layoutX="441.0" layoutY="148.0" mnemonicParsing="false" onAction="#clicarTiendas" text="tienda" />
    </children>
 </AnchorPane>

@@ -89,16 +89,18 @@ public class HorarioController implements Initializable {
     private Tab tab_infor;
     @FXML
     private TabPane tabPanel;
+    boolean entro;
+    List<Horario> lista;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        entro = true;
         try {
             bdd = new BDA();
-            List<Horario> lista = bdd.listarHorarios();
+            lista = bdd.listarHorarios();
             listaHorarios = FXCollections.observableArrayList(lista);
 
             tableView.setItems(listaHorarios);
@@ -114,6 +116,7 @@ public class HorarioController implements Initializable {
 
             Logger.getLogger(HorarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     @FXML
@@ -228,11 +231,27 @@ public class HorarioController implements Initializable {
 
             bt_guardar.setVisible(true);
             bt_guardarCambios.setVisible(false);
-            text_idHorario.setText("");
+            text_idHorario.clear();
+            ejemplo.setText("");
+            ejemplo2.setText("");
+            
+            
         }
 
         bt_guardar.setVisible(true);
         bt_guardarCambios.setVisible(false);
+    }
+
+    @FXML
+    private void clicarInformacionHorario(Event event) throws SQLException {
+        if (entro == true) {
+
+            if (tab_infor.isSelected()) {
+                listaHorarios.clear();
+                lista = bdd.listarHorarios();
+                listaHorarios.addAll(lista);
+            }
+        }
     }
 
 }

@@ -12,6 +12,8 @@ import Vista.rutas.RutasController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +28,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -35,63 +39,59 @@ import javafx.stage.Stage;
  */
 public class FXMLDocumentController implements Initializable {
 
-    private Label label;
+    Trabajador t;
+    Stage escenario;
+    Comercio c;
+    BDA b = new BDA();
+
     @FXML
     private TextField usuario;
     @FXML
     private TextField contra;
     @FXML
     private Button login;
-    BDA b = new BDA();
     @FXML
-    private Label conexion;
-    Trabajador t;
-    Stage escenario;
-    Comercio c;
-    
+    private AnchorPane panelLogin;
+    @FXML
+    private Pane paneLogin;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             b.conectar();
-            conexion.setText("CONECTADO");
-            conexion.setStyle("-fx-text-fill:green");
         } catch (SQLException ex) {
-            conexion.setText("DESCONECTADO");
-            conexion.setStyle("-fx-text-fill:red");
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText("Error al conectar con la base de datos");
+            a.show();
         }
+
     }
 
     @FXML
-    private void clicarLogin(MouseEvent event) throws SQLException, IOException{
-        int user = Integer.parseInt(usuario.getText());
-        user=1;
-        t = b.consultar(Integer.parseInt(usuario.getText()));
-
-        if (t.getIdTrabajador() == user && t.getContraseña().equals(contra.getText())) {
-            Alert a = new Alert(Alert.AlertType.INFORMATION);
-//            a.setTitle("Correcto");
-//            a.setHeaderText("El usuario ha sido registrado");
-//            a.show();
-            FXMLLoader loader = new FXMLLoader(); 
-            loader.setLocation(getClass().getResource("/Vista/menu/Menu.fxml"));
-           
-            Parent root = loader.load();
-           ((FXMLVistaPrincipalController) loader.getController()).setBda(b);
-            escenario = new Stage();
-            escenario.setTitle("Menu principal");
-            escenario.initModality(Modality.APPLICATION_MODAL);
-            escenario.setScene(new Scene(root));
-            escenario.showAndWait();
-            Stage stage=(Stage) login.getScene().getWindow();
-            
-            
-        } else {
-
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setTitle("Error");
-            a.setHeaderText("El usuario o contraseña son incorrectos");
-            a.show();
+    private void clicarLogin(MouseEvent event) throws SQLException, IOException {
+        List<Trabajador> lista = new ArrayList<>();
+        String dni = usuario.getText();
+        lista = b.consultar(usuario.getText());
+        for (Trabajador t : lista) {
+            if (t.getDNI().equals(dni) && t.getContraseña().equals(contra.getText())) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/Vista/menu/Menu.fxml"));
+                Parent root = loader.load();
+                ((FXMLVistaPrincipalController) loader.getController()).setBda(b);
+                escenario = new Stage();
+                escenario.setTitle("Menu principal");
+                escenario.initModality(Modality.APPLICATION_MODAL);
+                escenario.setScene(new Scene(root));
+                Stage stage = (Stage) login.getScene().getWindow();
+                stage.close();
+                escenario.showAndWait();
+            } else if(!t.getDNI().equals(dni) && !t.getContraseña().equals(contra.getText())){
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setTitle("Error");
+                a.setHeaderText("El usuario o contraseña son incorrectos");
+                a.show();
+            }
         }
 
     }

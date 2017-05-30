@@ -8,6 +8,7 @@ package Vista.menu;
 import Datos.BDA;
 import Vista.GestionTrabajadores.GestionTrabajadoresController;
 import Vista.GestionIncidencias.IncidenciasController;
+import Vista.GestionTiendas.GestionTiendasController;
 import Vista.horario.HorarioController;
 import Vista.rutas.RutasController;
 import java.io.IOException;
@@ -43,6 +44,8 @@ public class FXMLVistaPrincipalController implements Initializable {
     private Button horario;
     @FXML
     private Button incidencias;
+    @FXML
+    private Button tiendas;
 
     public void setBda(BDA bda) {
         this.bda = bda;
@@ -120,6 +123,26 @@ public class FXMLVistaPrincipalController implements Initializable {
         escenario.showAndWait();
         Stage stage = (Stage) incidencias.getScene().getWindow();
 
+    }
+
+    @FXML
+    private void clicarTiendas(ActionEvent event) throws IOException {
+        
+             Parent root;
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Vista/GestionTiendas/GestionTiendas.fxml"));
+        root = loader.load();
+        GestionTiendasController datosLogin = loader.getController();
+
+        escenario = new Stage();
+        escenario.setTitle("Tiendas");
+        escenario.initModality(Modality.APPLICATION_MODAL);
+        escenario.setScene(new Scene(root));
+        escenario.showAndWait();
+        Stage stage = (Stage) tiendas.getScene().getWindow();
+        
+        
     }
 
 }

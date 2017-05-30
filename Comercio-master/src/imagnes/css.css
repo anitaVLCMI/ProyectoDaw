@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-may-2017, 17:02:17
+    Author     : Borja
+*/
+.label {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+
+.text-field {
+    -fx-prompt-text-fill:white;
+    -fx-background-color: transparent , transparent , transparent;
+    -fx-border-color:white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+
+}
+#paneLogin{
+    -fx-background-image: url("\mantas.jpg");
+}
+#paneAdmin{
+    /*-fx-background-image: url("\admin.png");*/
+}
+/*#login{
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 7 30 7 30;
+    -fx-text-fill: #242d35;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    
+    
+}*/
+#login { 
+    -fx-background-radius: 200px 200px 200px 200px;
+
+    /*-fx-background-image: url('botonLogin2.png');*/
+    
+    
+    
+}
+/*.tab-pane>*.tab-header-area>*.tab-header-background {
+   -fx-background-color: -fx-outer-border, -fx-text-box-border, white;
+}*/
+

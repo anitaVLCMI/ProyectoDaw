@@ -32,6 +32,10 @@ public class Incidencias {
         return fecha.get();
     }
 
+    public Incidencias() {
+    }
+    
+
     public void setFecha(String value) {
         fecha.set(value);
     }

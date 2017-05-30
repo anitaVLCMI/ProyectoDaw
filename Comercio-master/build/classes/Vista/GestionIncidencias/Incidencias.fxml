@@ -24,7 +24,7 @@
       </Label>
       <TabPane fx:id="tabPaneInci" layoutY="63.0" prefHeight="384.0" prefWidth="580.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="tab_inci" text="Incidencias">
+          <Tab fx:id="tab_inci" onSelectionChanged="#clicarIncidencias" text="Incidencias">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="508.0">
                      <children>
